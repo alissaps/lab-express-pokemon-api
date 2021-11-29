@@ -42,7 +42,7 @@ postRouter.post("/pokemon", (req, res) => {
 
 postRouter.put("/pokemon/:id", (req, res) => {
   const indexToSubstitute = allPokemon.findIndex((currentPost) => {
-    console.log(currentPost.id == req.params.id)
+    
     return currentPost.id == req.params.id;
   });
 
@@ -54,11 +54,12 @@ postRouter.put("/pokemon/:id", (req, res) => {
 // 06
 
 postRouter.delete("/pokemon/:id", (req, res) => {
-  allPokemon.map((currentPost, i) => {
-    if (currentPost.id === req.params.id) {
-      allPokemon.splice(i, 1);
-    }
+  const indexToDelete = allPokemon.findIndex((currentPost) => {
+    
+    return currentPost.id == req.params.id;
   });
+
+  allPokemon.splice(indexToDelete, 1)
 
   res.status(200).json({});
 });
